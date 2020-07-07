@@ -7,7 +7,7 @@ from shapely.geometry import Polygon
 def add_block_id_to_buildings(bldgs: gpd.GeoDataFrame,
                               blocks: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
 
-    bldgs = gpd.sjoin(bldgs, bldgs, how='left', op='intersects')
+    bldgs = gpd.sjoin(bldgs, blocks, how='left', op='intersects')
     return bldgs
 
 def convert_crs_4326_to_3395(gdf_list: List[gpd.GeoDataFrame]) -> List[gpd.GeoDataFrame]:

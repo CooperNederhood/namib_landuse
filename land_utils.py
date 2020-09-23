@@ -24,6 +24,21 @@ def convert_crs_4326_to_3395(gdf_list: List[gpd.GeoDataFrame]) -> List[gpd.GeoDa
         rv.append(g)
     return rv 
 
+def convert_crs_3395_to_4326(gdf_list: List[gpd.GeoDataFrame]) -> List[gpd.GeoDataFrame]:
+    '''
+     conversion of dataframe to standard crs
+    '''
+
+    rv = []
+    for g in gdf_list:
+        if g.geometry.crs is None:
+            g.geometry.crs = {'init': 'epsg:3395'}  
+        if g.crs is None:
+            g.crs = {'init': 'epsg:3395'}
+        g = g.to_crs("EPSG:4326")
+        rv.append(g)
+    return rv 
+
 def building_density_per_block(bldgs: gpd.GeoDataFrame,
                                blocks: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     '''

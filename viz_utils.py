@@ -55,10 +55,16 @@ def make_explorer(blocks_path: str):
         ('OpenArea', '@max_dist'), ('BldgDensity', '@bldg_density'), ('BlockID', '@id')
     ]
     p = figure(background_fill_color="lightgrey", tooltips=TOOLTIPS, plot_width=p_width, plot_height=p_height,
-             x_axis_type="mercator", y_axis_type="mercator", match_aspect=True)
+               match_aspect=True)
 
     p_map = figure(background_fill_color="lightgrey", tooltips=TOOLTIPS, plot_width=p_width, plot_height=p_height,
-                 x_axis_type="mercator", y_axis_type="mercator", x_range=p.x_range, y_range=p.y_range)
+                   x_range=p.x_range, y_range=p.y_range)
+
+    # p = figure(background_fill_color="lightgrey", tooltips=TOOLTIPS, plot_width=p_width, plot_height=p_height,
+    #          x_axis_type="mercator", y_axis_type="mercator", match_aspect=True)
+
+    # p_map = figure(background_fill_color="lightgrey", tooltips=TOOLTIPS, plot_width=p_width, plot_height=p_height,
+    #              x_axis_type="mercator", y_axis_type="mercator", x_range=p.x_range, y_range=p.y_range)
     blocks_source = ColumnDataSource(data=blocks_df)
     # Add patch renderer to figure.
     tile_provider = get_provider(Vendors.ESRI_IMAGERY)

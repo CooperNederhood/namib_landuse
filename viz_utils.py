@@ -133,11 +133,13 @@ def make_explorer(blocks_path: str):
     return layout, blocks
 
 
-def save_selection(df: gpd.GeoDataFrame, name: str) -> None:
+def save_selection(df: gpd.GeoDataFrame, 
+                   name: str,
+                   project_path: str) -> None:
     '''
     Saves selection to directory
     '''
-    out_dir = Path("../data/exported/")
+    out_dir = Path(project_path) / 'exported' 
     out_dir.mkdir(parents=True, exist_ok=True)
     v = 0
     out_path = out_dir / "{}.v{}.geojson".format(name, v)
@@ -157,7 +159,8 @@ def EXPORT_SELECTION(data: gpd.GeoDataFrame,
                      density_maximum: float = None, 
                      area_minimum: float = None, 
                      area_maximum: float = None, 
-                     block_list: List = None):
+                     block_list: List = None,
+                     project_path: str = "/content/gdrive/My Drive/namib_landuse/"):
     '''
     Saves out a version of data with only the blocks that fullfill
     some criteria specified by the user
@@ -196,7 +199,7 @@ def EXPORT_SELECTION(data: gpd.GeoDataFrame,
     selected_data = data.iloc[b]
     print("Selecting {} total blocks in report".format(selected_data.shape[0]))
     print()
-    save_selection(selected_data, 'MY_TEST')
+    save_selection(selected_data, search_name, project_path)
     #return selected_data
     
 

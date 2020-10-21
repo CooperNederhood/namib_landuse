@@ -52,7 +52,7 @@ def make_explorer(blocks_path: str):
     blocks_source = ColumnDataSource(data=blocks_df)
 
     TOOLTIPS = [
-        ('OpenArea', '@max_dist'), ('BldgDensity', '@bldg_density'), ('BlockID', '@block_id')
+        ('OpenArea', '@max_dist'), ('BldgDensity', '@bldg_density'), ('BlockID', '@id')
     ]
     p = figure(background_fill_color="lightgrey", tooltips=TOOLTIPS, plot_width=p_width, plot_height=p_height,
              x_axis_type="mercator", y_axis_type="mercator", match_aspect=True)

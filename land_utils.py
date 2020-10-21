@@ -73,7 +73,8 @@ def max_min_distance(block_geom: Polygon,
     '''
 
     # Add the block's exterior to the building geom list
-    block_bound_poly = block_geom.envelope.buffer(buffer_amt)
+    #block_bound_poly = block_geom.envelope.buffer(buffer_amt)
+    block_bound_poly = block_geom.buffer(buffer_amt)
     block_exterior = block_bound_poly.difference(block_geom)
     building_list.append(block_exterior)
 

@@ -68,21 +68,19 @@ def building_density_per_block(bldgs: gpd.GeoDataFrame,
 def max_min_distance(block_geom: Polygon, 
                      building_list: List[Polygon],
                      buffer_amt = 0.01) -> float:
-    '''
-
-    '''
 
     # Add the block's exterior to the building geom list
     #block_bound_poly = block_geom.envelope.buffer(buffer_amt)
-    block_bound_poly = block_geom.buffer(buffer_amt)
-    block_exterior = block_bound_poly.difference(block_geom)
-    building_list.append(block_exterior)
+    #block_bound_poly = block_geom.buffer(buffer_amt)
+    #block_exterior = block_bound_poly.difference(block_geom)
+    #building_list.append(block_exterior)
 
     # Make the buildings one geom
     other_geoms = unary_union(building_list)
 
     # Calculate hausdorff distance
-    dist = block_geom.hausdorff_distance(other_geoms)
+    #dist = block_geom.hausdorff_distance(other_geoms)
+    dist = other_geoms.hausdorff_distance(block_geom)
 
     return dist 
 
